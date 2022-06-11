@@ -1,0 +1,40 @@
+{
+  "name": "instagram-with-postgresql-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "windows": "SET NODE_ENV=dev&&nodemon index.js",
+    "start": "NODE_ENV=dev nodemon index.js",
+    "demo": "NODE_ENV=demo node index.js",
+    "prod": "NODE_ENV=prod node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThanhLong070/instagram-with-PostgreSQL-api.git"
+  },
+  "author": "ThanhLong070",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThanhLong070/instagram-with-PostgreSQL-api/issues"
+  },
+  "homepage": "https://github.com/ThanhLong070/instagram-with-PostgreSQL-api#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "helmet": "^5.1.0",
+    "joi": "^17.6.0",
+    "jsonwebtoken": "^8.5.1",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "pg": "^8.7.3",
+    "sequelize": "^6.20.1",
+    "signale": "^1.4.0",
+    "validator": "^13.7.0"
+  }
+}
