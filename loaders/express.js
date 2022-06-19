@@ -33,7 +33,7 @@ module.exports = (app) => {
   //   })
   // );
   app.use(passport.initialize());
-  app.use(passport.session());
+  // app.use(passport.session());
   // Passport config
   require('../configs/passport')(passport);
 

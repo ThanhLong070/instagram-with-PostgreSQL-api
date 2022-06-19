@@ -1,15 +1,14 @@
 // @ts-nocheck
 const sequelize = require('../configs/database');
+const Post = require('../models/Post');
+const User = require('../models/User');
 const Logger = require('./logger');
 
 module.exports = async () => {
-  // Something code...
-  // Relationship sequelize code...
-  // Example:
-  // Model1.hasMany(Model2, {
-  //   foreignKey: { allowNull: false },
-  // });
-  // Model2.belongsTo(Model1);
+  User.hasMany(Post, {
+    foreignKey: { allowNull: false },
+  });
+  Post.belongsTo(User);
 
   return (
     sequelize

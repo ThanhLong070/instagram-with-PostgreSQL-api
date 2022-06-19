@@ -5,19 +5,19 @@ const route = Router();
 
 const passport = require('passport');
 const asyncMiddleware = require('../middlewares/asyncMiddleware');
-const userController = require('../../controllers/user');
+const postController = require('../../controllers/post');
 
 module.exports = (app) => {
-  app.use('/users', route);
+  app.use('/posts', route);
 
   /**
-   * @route GET /users/:id
-   * @desc Return current user profile
+   * @route Post /post
+   * @desc Return new post data
    * @access Private
    */
-  route.get(
-    '/:id',
+  route.post(
+    '/',
     // passport.authenticate('jwt', { session: false }),
-    asyncMiddleware(userController.getProfile)
+    asyncMiddleware(postController.createPost)
   );
 };
