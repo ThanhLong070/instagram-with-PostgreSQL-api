@@ -7,33 +7,17 @@ const Logger = require('./logger');
 const passport = require('passport');
 
 module.exports = (app) => {
-  app.get('/status', (req, res) => {
-    res.status(200).end();
-  });
-  app.head('/status', (req, res) => {
-    res.status(200).end();
-  });
+  app.get('/status', (req, res) => res.status(200).end());
+  app.head('/status', (req, res) => res.status(200).end());
 
   app.enable('trust proxy');
 
   // Use JSON, XML, urlencoded
   app.use(express.json());
-  app.use(
-    express.urlencoded({
-      extended: false,
-    })
-  );
+  app.use(express.urlencoded({ extended: false }));
 
   // Passport middleware
-  // app.use(
-  //   session({
-  //     secret: 'secret',
-  //     resave: false,
-  //     saveUninitialized: true,
-  //   })
-  // );
   app.use(passport.initialize());
-  // app.use(passport.session());
   // Passport config
   require('../configs/passport')(passport);
 

@@ -9,6 +9,11 @@ const {
 const { signToken } = require('../utils/generate');
 const { checkEmail, checkExistAccount } = require('../services/user');
 
+/**
+ * Sign up
+ * @param {object} body Body request data
+ * @returns {object} User data
+ */
 exports.signUp = async (body) => {
   const { error } = signUpValidation(body);
   if (error) throw createError(error.details[0].message);
@@ -20,6 +25,11 @@ exports.signUp = async (body) => {
   return User.create({ email, password });
 };
 
+/**
+ * Sign in
+ * @param {object} body Body request data
+ * @returns {object} accessToken and refreshToken data
+ */
 exports.signIn = async (body) => {
   const { error } = signInValidation(body);
   if (error) throw createError(error.details[0].message);

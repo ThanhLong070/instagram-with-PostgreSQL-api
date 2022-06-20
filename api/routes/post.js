@@ -11,13 +11,13 @@ module.exports = (app) => {
   app.use('/posts', route);
 
   /**
-   * @route Post /post
+   * @route Post /posts
    * @desc Return new post data
    * @access Private
    */
   route.post(
     '/',
-    // passport.authenticate('jwt', { session: false }),
+    passport.authenticate('jwt', { session: false }),
     asyncMiddleware(postController.createPost)
   );
 };

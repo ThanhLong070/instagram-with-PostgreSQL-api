@@ -16,21 +16,20 @@ POST http://localhost:7000/auth/signIn
 content-type: application/json
 
 {
-    "email": "testing8@gmail.com",
+    "email": "testing1@gmail.com",
     "password": "test1234"
 }
 
 ###
-GET http://localhost:7000/users/e730259e-5a62-48a6-bc9f-4c3bd10ad35c
-# authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlNzMwMjU5ZS01YTYyLTQ4YTYtYmM5Zi00YzNiZDEwYWQzNWMiLCJpYXQiOjE2NTU2Mzk5MjIsImV4cCI6MTY1NTY0MzUyMn0.z-dJHiUXKuqggHjuBX0uwnG4Ktn12VDn2jAPc_y3QrA
+GET http://localhost:7000/users/getProfile
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OGY4OWYwNy1iM2U5LTRhNDUtOGNlOS0yZGU5ZjJjMmU2ZDgiLCJpYXQiOjE2NTU2OTMyMjQsImV4cCI6MTY1NTY5NjgyNH0.hg7jlntcVcYYtXug8EdZ1uCiET7T7CXjVm6arOXAkZA
 
 
 ###
 POST  http://localhost:7000/posts
-# authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlNzMwMjU5ZS01YTYyLTQ4YTYtYmM5Zi00YzNiZDEwYWQzNWMiLCJpYXQiOjE2NTU2Mzk5MjIsImV4cCI6MTY1NTY0MzUyMn0.z-dJHiUXKuqggHjuBX0uwnG4Ktn12VDn2jAPc_y3QrA
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OGY4OWYwNy1iM2U5LTRhNDUtOGNlOS0yZGU5ZjJjMmU2ZDgiLCJpYXQiOjE2NTU2OTMyMjQsImV4cCI6MTY1NTY5NjgyNH0.hg7jlntcVcYYtXug8EdZ1uCiET7T7CXjVm6arOXAkZA
 content-type: application/json
 
 {
-    "summary": "test summary",
-    "userId": "e730259e-5a62-48a6-bc9f-4c3bd10ad35c"
+    "summary": "test summary"
 }

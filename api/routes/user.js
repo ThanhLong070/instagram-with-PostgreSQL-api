@@ -16,8 +16,8 @@ module.exports = (app) => {
    * @access Private
    */
   route.get(
-    '/:id',
-    // passport.authenticate('jwt', { session: false }),
+    '/getProfile',
+    passport.authenticate('jwt', { session: false }),
     asyncMiddleware(userController.getProfile)
   );
 };
