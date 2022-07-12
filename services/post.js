@@ -1,18 +1,60 @@
 // @ts-nocheck
 const Post = require('../models/Post');
 const createError = require('http-errors');
-const { createPostValidation } = require('../utils/validation/post');
 
 /**
- * Post new post
+ * Create new post
  * @param {object} body Body request
+ * @param {object} user User login
  * @returns {object} Post data
  */
 exports.createPost = async (body, user) => {
-  const { error } = createPostValidation(body);
-  if (error) throw createError(error.details[0].message);
+  return Post.create({ ...body, userId: user.id });
+};
 
-  const post = await Post.create({ summary: body.summary, userId: user.id });
+/**
+ * get Post data
+ * @param {object} obj queries data
+ * @returns {object} Post data
+ */
+exports.getPost = async (obj) => {
+  return Post.findOne({ where: obj });
+};
 
-  return post;
+/**
+ * get list Post data
+ * @param {object} obj queries data
+ * @returns {object} List Post data
+ */
+exports.getPosts = async (obj) => {
+  return Post.findAll({ where: obj });
+};
+
+/**
+ * Update the post
+ * @param {object} body Body data update
+ * @param {string} postId Post id params
+ * @returns {object} Post data
+ */
+exports.updatePost = async (body, postId) => {
+  await Post.update(body, { where: { id: postId } });
+
+  return this.getPost({ id: postId });
+};
+
+/**
+ * Check the post is exist
+ * @param {string} postId Post id params
+ * @param {string} userId The current user id
+ * @returns {void} This method returns no data.
+ */
+exports.checkExistPost = async (postId, userId) => {
+  const existPost = await this.getPost({
+    id: postId,
+    userId,
+  });
+
+  if (!existPost) {
+    throw createError.NotFound(`This post doesn't exist.`);
+  }
 };

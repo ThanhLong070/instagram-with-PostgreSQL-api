@@ -24,11 +24,11 @@ module.exports = (app) => {
   app.use(cors());
 
   // Load API routes
-  app.use('/', routes());
+  app.use('/api/v1', routes());
 
   // Catch 404 and forward to error handler
   app.use((req, res, next) => {
-    next(createError.NotFound("This route doesn't exist."));
+    next(createError.NotFound(`Sorry, this route isn't available.`));
   });
 
   app.use((err, req, res, next) => {

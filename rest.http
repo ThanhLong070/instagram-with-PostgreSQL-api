@@ -1,35 +1,63 @@
 
-GET  http://localhost:7000
+GET  http://localhost:7000/api/v1/
 
 ###
-POST http://localhost:7000/auth/signUp
+POST http://localhost:7000/api/v1/auth/signup
 content-type: application/json
 
 {
-    "email": "testing8@gmail.com",
+    "email": "longthanhlong@gmail.com",
+    "fullName": "Nguyễn Thanh Long",
+    "username": "thanhlong",
     "password": "test1234",
     "passwordConfirmation": "test1234"
 }
 
 ###
-POST http://localhost:7000/auth/signIn
+POST http://localhost:7000/api/v1/auth/login
 content-type: application/json
 
 {
-    "email": "testing1@gmail.com",
+    "email": "longthanhlong@gmail.com",
     "password": "test1234"
 }
 
 ###
-GET http://localhost:7000/users/getProfile
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OGY4OWYwNy1iM2U5LTRhNDUtOGNlOS0yZGU5ZjJjMmU2ZDgiLCJpYXQiOjE2NTU2OTMyMjQsImV4cCI6MTY1NTY5NjgyNH0.hg7jlntcVcYYtXug8EdZ1uCiET7T7CXjVm6arOXAkZA
-
+POST http://localhost:7000/api/v1/auth/logout
 
 ###
-POST  http://localhost:7000/posts
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OGY4OWYwNy1iM2U5LTRhNDUtOGNlOS0yZGU5ZjJjMmU2ZDgiLCJpYXQiOjE2NTU2OTMyMjQsImV4cCI6MTY1NTY5NjgyNH0.hg7jlntcVcYYtXug8EdZ1uCiET7T7CXjVm6arOXAkZA
+GET http://localhost:7000/api/v1/users/profile_info?username=thanhlong
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTcxNzI1NzYsImV4cCI6MTY1NzE3NjE3Nn0.C25HwGxRAJjruf1CoMRFie23W4gHgvThJBdByY6rsyY
+
+###
+POST http://localhost:7000/api/v1/posts
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTcxNzI1NzYsImV4cCI6MTY1NzE3NjE3Nn0.C25HwGxRAJjruf1CoMRFie23W4gHgvThJBdByY6rsyY
 content-type: application/json
 
 {
-    "summary": "test summary"
+    "note": "You made my day!"
 }
+
+###
+GET http://localhost:7000/api/v1/posts?userId=cc4fb0d3-a5ff-4708-94e7-b056ca83eedf
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTcxNzI1NzYsImV4cCI6MTY1NzE3NjE3Nn0.C25HwGxRAJjruf1CoMRFie23W4gHgvThJBdByY6rsyY
+content-type: application/json
+
+###
+GET http://localhost:7000/api/v1/p/fb5164b8-dbbd-416b-8f2e-66808955afc9
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlOGViNmJhNC00MTVhLTQ0OWUtODY2ZC0wMTQ4ZThmZGM1OTUiLCJpYXQiOjE2NTcxNTI5NjksImV4cCI6MTY1NzE1NjU2OX0.z8inrE8bAbEKfhljP61qQZMTOJW-8qNf3blKcsSTF5g
+content-type: application/json
+
+###
+PATCH http://localhost:7000/api/v1/posts/fb5164b8-dbbd-416b-8f2e-66808955afc9
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlOGViNmJhNC00MTVhLTQ0OWUtODY2ZC0wMTQ4ZThmZGM1OTUiLCJpYXQiOjE2NTcxNTI5NjksImV4cCI6MTY1NzE1NjU2OX0.z8inrE8bAbEKfhljP61qQZMTOJW-8qNf3blKcsSTF5g
+content-type: application/json
+
+{
+    "note": "You made my day!!?"
+}
+
+###
+DELETE  http://localhost:7000/api/v1/posts/fb5164b8-dbbd-416b-8f2e-66808955afc0
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlOGViNmJhNC00MTVhLTQ0OWUtODY2ZC0wMTQ4ZThmZGM1OTUiLCJpYXQiOjE2NTcxNTI5NjksImV4cCI6MTY1NzE1NjU2OX0.z8inrE8bAbEKfhljP61qQZMTOJW-8qNf3blKcsSTF5g
+content-type: application/json

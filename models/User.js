@@ -29,6 +29,37 @@ const User = sequelize.define(
       min: [6, 'Password is too short, min is 6 characters'],
       allowNull: false,
     },
+
+    avatar: {
+      type: Sequelize.STRING,
+    },
+
+    fullName: {
+      type: Sequelize.STRING,
+      min: [4, 'Too short, min is 4 characters'],
+      max: [100, 'Too long, max is 100 characters'],
+      allowNull: false,
+    },
+
+    username: {
+      type: Sequelize.STRING,
+      unique: true,
+      min: [4, 'Too short, min is 4 characters'],
+      max: [32, 'Too long, max is 100 characters'],
+      lowercase: true,
+      allowNull: false,
+    },
+
+    phoneNumber: {
+      type: Sequelize.STRING,
+      unique: true,
+      min: [4, 'Too short, min is 4 characters'],
+      max: [32, 'Too long, max is 100 characters'],
+    },
+
+    gender: {
+      type: Sequelize.STRING,
+    },
   },
   {
     hooks: {

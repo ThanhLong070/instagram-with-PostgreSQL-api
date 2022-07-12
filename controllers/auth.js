@@ -1,13 +1,23 @@
 const authService = require('../services/auth');
 
-exports.signUp = async (req, res) => {
-  const data = await authService.signUp(req.body);
+exports.signup = async (req, res) => {
+  const data = await authService.signup(req.body);
+
+  const {
+    dataValues: { password, ...dataValuesAbridged },
+  } = data;
+
+  return res.status(200).json({ success: true, data: dataValuesAbridged });
+};
+
+exports.login = async (req, res) => {
+  const data = await authService.login(req.body);
 
   return res.status(200).json({ success: true, data });
 };
 
-exports.signIn = async (req, res) => {
-  const data = await authService.signIn(req.body);
+exports.logout = async (req, res) => {
+  req.logout();
 
-  return res.status(200).json({ success: true, data });
+  return res.status(200).json({ success: true, data: 'Successful logout' });
 };

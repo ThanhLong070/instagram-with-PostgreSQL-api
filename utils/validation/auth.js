@@ -1,12 +1,15 @@
 const Joi = require('joi');
+const { validate } = require('./index');
 
-const signUpValidation = (data) => {
-  const signInSchema = Joi.object({
+module.exports.signupValidation = (data) => {
+  const signupSchema = Joi.object({
     email: Joi.string()
       .pattern(new RegExp('gmail.com$'))
       .email()
       .lowercase()
       .required(),
+    fullName: Joi.string().required(),
+    username: Joi.string().lowercase().required(),
     password: Joi.string().min(6).max(32).required(),
     passwordConfirmation: Joi.any()
       .equal(Joi.ref('password'))
@@ -15,11 +18,11 @@ const signUpValidation = (data) => {
       .messages({ 'any.only': '{{#label}} does not match' }),
   });
 
-  return signInSchema.validate(data);
+  validate(signupSchema, data);
 };
 
-const signInValidation = (data) => {
-  const signInSchema = Joi.object({
+module.exports.loginValidation = (data) => {
+  const loginSchema = Joi.object({
     email: Joi.string()
       .pattern(new RegExp('gmail.com$'))
       .email()
@@ -28,10 +31,5 @@ const signInValidation = (data) => {
     password: Joi.string().min(6).max(32).required(),
   });
 
-  return signInSchema.validate(data);
-};
-
-module.exports = {
-  signUpValidation,
-  signInValidation,
+  validate(loginSchema, data);
 };

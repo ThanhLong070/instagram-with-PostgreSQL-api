@@ -1,13 +1,10 @@
 const Joi = require('joi');
+const { validate } = require('./index');
 
-const createPostValidation = (data) => {
+module.exports.createPostValidation = (data) => {
   const createPostSchema = Joi.object({
-    summary: Joi.string().required(),
+    note: Joi.string().required(),
   });
 
-  return createPostSchema.validate(data);
-};
-
-module.exports = {
-  createPostValidation,
+  validate(createPostSchema, data);
 };

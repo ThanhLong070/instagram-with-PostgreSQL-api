@@ -11,13 +11,13 @@ module.exports = (app) => {
   app.use('/users', route);
 
   /**
-   * @route GET /users/:id
-   * @desc Return current user profile
+   * @route GET /api/v1/users/profile_info
+   * @desc Return user profile information
    * @access Private
    */
   route.get(
-    '/getProfile',
+    '/profile_info',
     passport.authenticate('jwt', { session: false }),
-    asyncMiddleware(userController.getProfile)
+    asyncMiddleware(userController.getProfileInfo)
   );
 };

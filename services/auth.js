@@ -1,42 +1,37 @@
 // @ts-nocheck
-const JWT = require('jsonwebtoken');
 const User = require('../models/User');
 const createError = require('http-errors');
 const {
-  signUpValidation,
-  signInValidation,
+  signupValidation,
+  loginValidation,
 } = require('../utils/validation/auth');
 const { signToken } = require('../utils/generate');
-const { checkEmail, checkExistAccount } = require('../services/user');
+const { checkRegistered, checkExistAccount } = require('./user');
 
 /**
- * Sign up
+ * Signup
  * @param {object} body Body request data
  * @returns {object} User data
  */
-exports.signUp = async (body) => {
-  const { error } = signUpValidation(body);
-  if (error) throw createError(error.details[0].message);
+exports.signup = async (body) => {
+  signupValidation(body);
 
-  const { email, password } = body;
+  await checkRegistered(body.email, body.username);
 
-  await checkEmail(email);
-
-  return User.create({ email, password });
+  return User.create(body);
 };
 
 /**
- * Sign in
+ * Login
  * @param {object} body Body request data
  * @returns {object} accessToken and refreshToken data
  */
-exports.signIn = async (body) => {
-  const { error } = signInValidation(body);
-  if (error) throw createError(error.details[0].message);
+exports.login = async (body) => {
+  loginValidation(body);
 
   const { email, password } = body;
 
-  const user = await checkExistAccount(email, null);
+  const user = await checkExistAccount(email, null, null);
 
   const isValid = user.validPassword(password);
   if (!isValid) throw createError.Unauthorized(`Password incorrect`);

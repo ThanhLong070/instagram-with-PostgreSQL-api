@@ -1,9 +1,13 @@
-const userService = require('../services/user');
+// @ts-nocheck
+const { checkExistAccount } = require('../services/user');
 
-exports.getProfile = async (req, res) => {
-  const { id, email } = req.user;
+exports.getProfileInfo = async (req, res) => {
+  const { username } = req.query;
+  const user = await checkExistAccount(null, null, username);
 
-  const data = { id, email };
+  const {
+    dataValues: { password, ...dataValuesAbridged },
+  } = user;
 
-  return res.status(200).json({ success: true, data });
+  return res.status(200).json({ success: true, data: dataValuesAbridged });
 };

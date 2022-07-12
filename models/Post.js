@@ -10,19 +10,24 @@ const Post = sequelize.define('post', {
     primaryKey: true,
   },
 
-  summary: {
+  note: {
     type: Sequelize.STRING,
+    max: [2200, 'Too long, max is 2200 characters'],
     allowNull: false,
   },
 
-  likes: {
-    type: Sequelize.INTEGER,
-    default: 0,
+  location: {
+    type: Sequelize.STRING,
   },
 
-  comments: {
-    type: Sequelize.INTEGER,
-    default: 0,
+  isHideLikes: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+
+  isTurnOffCommenting: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
   },
 });
 
