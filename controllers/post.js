@@ -43,7 +43,7 @@ exports.patchPostById = async (req, res) => {
 exports.deletePostById = async (req, res) => {
   await postService.checkExistPost(req.params.postId, req.user.id);
 
-  const data = await postService.deletePost(req.body, req.params.postId);
+  const data = await postService.deletePost(req.params.postId);
 
   return res.status(200).json({ success: true, data });
 };

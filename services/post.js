@@ -43,6 +43,16 @@ exports.updatePost = async (body, postId) => {
 };
 
 /**
+ * Delete the post
+ * @param {object} body Body data update
+ * @param {string} postId Post id params
+ * @returns {number} Count data
+ */
+exports.deletePost = async (postId) => {
+  return Post.destroy({ where: { id: postId } });
+};
+
+/**
  * Check the post is exist
  * @param {string} postId Post id params
  * @param {string} userId The current user id
