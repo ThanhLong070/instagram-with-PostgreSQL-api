@@ -1,6 +1,11 @@
 const Joi = require('joi');
 const { validate } = require('./index');
 
+/**
+ * Signup validation
+ * @param {object} data Signup validation data
+ * @returns {void} This method returns no data.
+ */
 module.exports.signupValidation = (data) => {
   const signupSchema = Joi.object({
     email: Joi.string()
@@ -21,6 +26,24 @@ module.exports.signupValidation = (data) => {
   validate(signupSchema, data);
 };
 
+/**
+ * Refresh token validation
+ * @param {object} data Refresh token validation data
+ * @returns {void} This method returns no data.
+ */
+module.exports.refreshTokenValidation = (data) => {
+  const refreshTokenSchema = Joi.object({
+    token: Joi.string().required(),
+  });
+
+  validate(refreshTokenSchema, data);
+};
+
+/**
+ * Login validation
+ * @param {object} data Login validation data
+ * @returns {void} This method returns no data.
+ */
 module.exports.loginValidation = (data) => {
   const loginSchema = Joi.object({
     email: Joi.string()
@@ -32,4 +55,17 @@ module.exports.loginValidation = (data) => {
   });
 
   validate(loginSchema, data);
+};
+
+/**
+ * Logout validation
+ * @param {object} data Logout validation data
+ * @returns {void} This method returns no data.
+ */
+module.exports.logoutValidation = (data) => {
+  const logoutSchema = Joi.object({
+    refreshToken: Joi.string().required(),
+  });
+
+  validate(logoutSchema, data);
 };

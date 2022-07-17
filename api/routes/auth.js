@@ -16,6 +16,13 @@ module.exports = (app) => {
   route.post('/signup', asyncMiddleware(authController.signup));
 
   /**
+   * @route POST /api/v1/auth/refresh_token
+   * @desc Refresh token / Returning JWT token
+   * @access Public
+   */
+  route.post('/refresh_token', asyncMiddleware(authController.refreshToken));
+
+  /**
    * @route POST /api/v1/auth/login
    * @desc Login user / Returning JWT token
    * @access Public
@@ -23,9 +30,9 @@ module.exports = (app) => {
   route.post('/login', asyncMiddleware(authController.login));
 
   /**
-   * @route POST /api/v1/auth/logout
+   * @route DELETE /api/v1/auth/logout
    * @desc Logout user
    * @access Public
    */
-  route.post('/logout', asyncMiddleware(authController.logout));
+  route.delete('/logout', asyncMiddleware(authController.logout));
 };

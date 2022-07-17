@@ -1,10 +1,13 @@
+// @ts-nocheck
 const bcrypt = require('bcryptjs');
 const JWT = require('jsonwebtoken');
+const client = require('../../loaders/redis');
+const createError = require('http-errors');
 
 module.exports = {
   generateHash: (account) => {
     if (account === null) {
-      throw new Error('No found account');
+      throw createError.NotFound(`No found account`);
     } else if (!account.changed('password')) return account.password;
     else {
       const salt = bcrypt.genSaltSync();
@@ -20,8 +23,11 @@ module.exports = {
       const secret = process.env.SECRET_OR_KEY;
       const option = { expiresIn: time };
 
-      JWT.sign(payload, secret, option, (err, token) => {
+      JWT.sign(payload, secret, option, async (err, token) => {
         if (err) reject(err);
+        if (time === process.env.EX_REFRESH_TOKEN) {
+          await client.setEx(userId, 365 * 24 * 60 * 60, token);
+        }
         resolve(`Bearer ${token}`);
       });
     });

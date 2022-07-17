@@ -14,6 +14,15 @@ content-type: application/json
 }
 
 ###
+POST http://localhost:7000/api/v1/auth/refresh_token
+content-type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTgwNDg1ODIsImV4cCI6MTY4OTYwNjE4Mn0.qTI_j9DLMpG4GwkC35E79LBqinm7AKrc_GdG1VUreEY"
+}
+
+
+###
 POST http://localhost:7000/api/v1/auth/login
 content-type: application/json
 
@@ -23,15 +32,20 @@ content-type: application/json
 }
 
 ###
-POST http://localhost:7000/api/v1/auth/logout
+DELETE  http://localhost:7000/api/v1/auth/logout
+content-type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTgwNDg1OTUsImV4cCI6MTY4OTYwNjE5NX0.GSKtstsKtH8JU-eUwVk7Dp1dQK8AvAd8HJqHBSWDG2o"
+}
 
 ###
 GET http://localhost:7000/api/v1/users/profile_info?username=thanhlong
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTcxNzI1NzYsImV4cCI6MTY1NzE3NjE3Nn0.C25HwGxRAJjruf1CoMRFie23W4gHgvThJBdByY6rsyY
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTc4NzA1MzgsImV4cCI6MTY1Nzg3MDU5OH0.MbaLvWqtfTgEUl2sCKGBRDPBk3FvKCcTgWjSkfDmYSY
 
 ###
 POST http://localhost:7000/api/v1/posts
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTcxNzI1NzYsImV4cCI6MTY1NzE3NjE3Nn0.C25HwGxRAJjruf1CoMRFie23W4gHgvThJBdByY6rsyY
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTc4NzExNjMsImV4cCI6MTY1Nzk1NzU2M30.oXUzxPIth3V-2tEy7FLFXI4juljgAt3GisO87TMNFkY
 content-type: application/json
 
 {
@@ -39,18 +53,14 @@ content-type: application/json
 }
 
 ###
-GET http://localhost:7000/api/v1/posts?userId=cc4fb0d3-a5ff-4708-94e7-b056ca83eedf
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTcxNzI1NzYsImV4cCI6MTY1NzE3NjE3Nn0.C25HwGxRAJjruf1CoMRFie23W4gHgvThJBdByY6rsyY
+GET http://localhost:7000/api/v1/posts
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTc4NzExNjMsImV4cCI6MTY1Nzk1NzU2M30.oXUzxPIth3V-2tEy7FLFXI4juljgAt3GisO87TMNFkY
 content-type: application/json
 
-###
-GET http://localhost:7000/api/v1/p/fb5164b8-dbbd-416b-8f2e-66808955afc9
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlOGViNmJhNC00MTVhLTQ0OWUtODY2ZC0wMTQ4ZThmZGM1OTUiLCJpYXQiOjE2NTcxNTI5NjksImV4cCI6MTY1NzE1NjU2OX0.z8inrE8bAbEKfhljP61qQZMTOJW-8qNf3blKcsSTF5g
-content-type: application/json
 
 ###
-PATCH http://localhost:7000/api/v1/posts/fb5164b8-dbbd-416b-8f2e-66808955afc9
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlOGViNmJhNC00MTVhLTQ0OWUtODY2ZC0wMTQ4ZThmZGM1OTUiLCJpYXQiOjE2NTcxNTI5NjksImV4cCI6MTY1NzE1NjU2OX0.z8inrE8bAbEKfhljP61qQZMTOJW-8qNf3blKcsSTF5g
+PATCH http://localhost:7000/api/v1/posts/31484765-bf8f-4795-a3e6-ea1b337eca04
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTc4NzExNjMsImV4cCI6MTY1Nzk1NzU2M30.oXUzxPIth3V-2tEy7FLFXI4juljgAt3GisO87TMNFkY
 content-type: application/json
 
 {
@@ -58,6 +68,6 @@ content-type: application/json
 }
 
 ###
-DELETE  http://localhost:7000/api/v1/posts/fb5164b8-dbbd-416b-8f2e-66808955afc0
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlOGViNmJhNC00MTVhLTQ0OWUtODY2ZC0wMTQ4ZThmZGM1OTUiLCJpYXQiOjE2NTcxNTI5NjksImV4cCI6MTY1NzE1NjU2OX0.z8inrE8bAbEKfhljP61qQZMTOJW-8qNf3blKcsSTF5g
+DELETE  http://localhost:7000/api/v1/posts/31484765-bf8f-4795-a3e6-ea1b337eca04
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTc4NzExNjMsImV4cCI6MTY1Nzk1NzU2M30.oXUzxPIth3V-2tEy7FLFXI4juljgAt3GisO87TMNFkY
 content-type: application/json

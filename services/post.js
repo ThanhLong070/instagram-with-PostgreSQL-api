@@ -46,10 +46,12 @@ exports.updatePost = async (body, postId) => {
  * Delete the post
  * @param {object} body Body data update
  * @param {string} postId Post id params
- * @returns {number} Count data
+ * @returns {string} Successful delete post
  */
 exports.deletePost = async (postId) => {
-  return Post.destroy({ where: { id: postId } });
+  await Post.destroy({ where: { id: postId } });
+
+  return `Successful delete post`;
 };
 
 /**

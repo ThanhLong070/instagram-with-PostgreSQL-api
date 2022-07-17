@@ -18,8 +18,6 @@ exports.createPost = async (req, res) => {
 exports.getPosts = async (req, res) => {
   const { query, user } = req;
 
-  console.log('query :>> ', query);
-
   let whereStatement = {
     userId: query.userId ? query.userId : user.id,
   };
@@ -31,19 +29,23 @@ exports.getPosts = async (req, res) => {
 };
 
 exports.patchPostById = async (req, res) => {
+  const { body, params, user } = req;
+
   updatePostValidation(body);
 
-  await postService.checkExistPost(req.params.postId, req.user.id);
+  await postService.checkExistPost(params.postId, user.id);
 
-  const data = await postService.updatePost(req.body, req.params.postId);
+  const data = await postService.updatePost(body, params.postId);
 
   return res.status(200).json({ success: true, data });
 };
 
 exports.deletePostById = async (req, res) => {
-  await postService.checkExistPost(req.params.postId, req.user.id);
+  const { params, user } = req;
 
-  const data = await postService.deletePost(req.params.postId);
+  await postService.checkExistPost(params.postId, user.id);
+
+  const data = await postService.deletePost(params.postId);
 
   return res.status(200).json({ success: true, data });
 };
