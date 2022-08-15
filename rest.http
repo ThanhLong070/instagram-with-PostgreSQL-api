@@ -18,7 +18,7 @@ POST http://localhost:7000/api/v1/auth/refresh_token
 content-type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTgwNDg1ODIsImV4cCI6MTY4OTYwNjE4Mn0.qTI_j9DLMpG4GwkC35E79LBqinm7AKrc_GdG1VUreEY"
+    "userId": "cc4fb0d3-a5ff-4708-94e7-b056ca83eedf"
 }
 
 
@@ -36,12 +36,12 @@ DELETE  http://localhost:7000/api/v1/auth/logout
 content-type: application/json
 
 {
-    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTgwNDg1OTUsImV4cCI6MTY4OTYwNjE5NX0.GSKtstsKtH8JU-eUwVk7Dp1dQK8AvAd8HJqHBSWDG2o"
+    "userId": "cc4fb0d3-a5ff-4708-94e7-b056ca83eedf"
 }
 
 ###
 GET http://localhost:7000/api/v1/users/profile_info?username=thanhlong
-authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTc4NzA1MzgsImV4cCI6MTY1Nzg3MDU5OH0.MbaLvWqtfTgEUl2sCKGBRDPBk3FvKCcTgWjSkfDmYSY
+authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NjA0ODU2ODYsImV4cCI6MTY2MDQ4OTI4Nn0.5DZUzgTMMalnXIhmw9XMhnZtwim9nEhG6DAS9r0y_fc
 
 ###
 POST http://localhost:7000/api/v1/posts
