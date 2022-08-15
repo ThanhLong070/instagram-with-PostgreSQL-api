@@ -5,6 +5,7 @@ const createError = require('http-errors');
 const routes = require('../api');
 const Logger = require('./logger');
 const passport = require('passport');
+const fileUpload = require('express-fileupload');
 
 module.exports = (app) => {
   app.get('/status', (req, res) => res.status(200).end());
@@ -15,6 +16,13 @@ module.exports = (app) => {
   // Use JSON, XML, urlencoded
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
+
+  app.use(express.static(__dirname + '/'));
+  app.use(
+    fileUpload({
+      limits: { fileSize: 50 * 1024 * 1024 },
+    })
+  );
 
   // Passport middleware
   app.use(passport.initialize());

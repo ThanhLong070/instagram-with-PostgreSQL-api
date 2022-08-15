@@ -42,6 +42,27 @@ exports.checkExistAccount = async (email, userId, username) => {
 };
 
 /**
+ * Check exist Account
+ * @param {string} email Email request
+ * @param {string} userId User id request
+ * @param {string} username User name request
+ * @returns {object} User data
+ */
+exports.uploadAvatar = async (userId, files) => {
+  if (files) {
+    const fileUpload = files.image;
+    const imgPath = `uploads/avatar/${fileUpload.name}`;
+    fileUpload.mv(imgPath);
+
+    // TODO: upload to MinIO
+    // await User.update({ avatar: imgPath }, { where: { id: userId } });
+
+    return `Successful upload avatar`;
+  }
+  throw createError.NotFound(`File upload doesn't exist.`);
+};
+
+/**
  * get User info
  * @param {object} obj queries data
  * @returns {object} User data

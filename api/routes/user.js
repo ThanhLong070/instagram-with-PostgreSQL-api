@@ -20,4 +20,15 @@ module.exports = (app) => {
     passport.authenticate('jwt', { session: false }),
     asyncMiddleware(userController.getProfileInfo)
   );
+
+  /**
+   * @route POST /api/v1/users/upload_avatar
+   * @desc Return status of method
+   * @access Private
+   */
+  route.post(
+    '/upload_avatar',
+    passport.authenticate('jwt', { session: false }),
+    asyncMiddleware(userController.uploadAvatar)
+  );
 };

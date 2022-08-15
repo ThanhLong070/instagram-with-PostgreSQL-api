@@ -33,7 +33,7 @@ module.exports.signupValidation = (data) => {
  */
 module.exports.refreshTokenValidation = (data) => {
   const refreshTokenSchema = Joi.object({
-    token: Joi.string().required(),
+    userId: Joi.string().required(),
   });
 
   validate(refreshTokenSchema, data);
@@ -64,7 +64,7 @@ module.exports.loginValidation = (data) => {
  */
 module.exports.logoutValidation = (data) => {
   const logoutSchema = Joi.object({
-    refreshToken: Joi.string().required(),
+    userId: Joi.string().required(),
   });
 
   validate(logoutSchema, data);

@@ -25,10 +25,11 @@ module.exports = {
 
       JWT.sign(payload, secret, option, async (err, token) => {
         if (err) reject(err);
-        if (time === process.env.EX_REFRESH_TOKEN) {
-          await client.setEx(userId, 365 * 24 * 60 * 60, token);
+        const reply = await client.get(userId);
+        if (!reply && time === process.env.EX_REFRESH_TOKEN) {
+          await client.setEx(userId, 24 * 60 * 60, token);
         }
-        resolve(`Bearer ${token}`);
+        resolve(`Bearer ${reply ? reply : token}`);
       });
     });
   },

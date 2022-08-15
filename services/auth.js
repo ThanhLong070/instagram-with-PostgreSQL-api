@@ -33,10 +33,10 @@ exports.signup = async (body) => {
 exports.refreshToken = async (body) => {
   refreshTokenValidation(body);
 
-  const { token } = body;
-  if (!token) throw createError.BadRequest();
+  const { userId } = body;
+  if (!userId) throw createError.BadRequest();
 
-  const { _id } = await verifyToken(token);
+  const { _id } = await verifyToken(userId);
 
   const accessToken = await signToken(_id, process.env.EX_ACCESS_TOKEN);
   const refreshToken = await signToken(_id, process.env.EX_REFRESH_TOKEN);
@@ -79,9 +79,7 @@ exports.login = async (body) => {
 exports.logout = async (body) => {
   logoutValidation(body);
 
-  const { refreshToken } = body;
-
-  const { _id } = await verifyToken(refreshToken);
+  const { _id } = await verifyToken(body.userId);
 
   await client.del(_id);
 

@@ -19,14 +19,15 @@ module.exports.validate = (schema, data) => {
  * @param {string} token
  * @returns {Promise<void>} This method returns no data.
  */
-module.exports.verifyToken = async (token) => {
+module.exports.verifyToken = async (userId) => {
+  const token = await client.get(userId);
+
+  if (!token) throw createError.Unauthorized();
+
   return new Promise((resolve, reject) => {
     JWT.verify(token, process.env.SECRET_OR_KEY, async (err, payload) => {
       if (err) return reject(err);
-
-      const reply = await client.get(payload._id);
-      if (token === reply) return resolve(payload);
-      return reject(createError.Unauthorized());
+      return resolve(payload);
     });
   });
 };
