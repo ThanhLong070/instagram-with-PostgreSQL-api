@@ -93,7 +93,7 @@ module.exports = {
       statusCode.UNPROCESSABLE_ENTITY,
       message,
       variables.NAME_CODE.DATA,
-      variables.ERROR_CODE.INVALID
+      variables.ERROR_CODE.DATA
     );
     throwError(error);
   },
