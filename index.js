@@ -10,7 +10,7 @@ const express = require('express');
 const helmet = require('helmet');
 
 const Logger = require('./loaders/logger');
-const variables = require('./constants');
+const variables = require('./constants/variables');
 
 async function startServer() {
   const app = express();
