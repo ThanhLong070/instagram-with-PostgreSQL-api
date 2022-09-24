@@ -8,6 +8,7 @@ const Report = require('../models/Report');
 const Photo = require('../models/Photo');
 const Follower = require('../models/Follower');
 const Logger = require('./logger');
+const variables = require('../constants/variables');
 
 module.exports = async () => {
   User.hasMany(Post, { foreignKey: { allowNull: false } });
@@ -39,10 +40,10 @@ module.exports = async () => {
       // .sync({ force: true })
       .sync()
       .then(async () => {
-        Logger.success(`✌️ PostgresSql Connected`);
+        Logger.success(`${variables.POSTGRES_SQL_CONNECTED}`);
       })
       .catch((error) => {
-        Logger.error(`PostgresSql Connection Error: ${error}`);
+        Logger.error(`${variables.POSTGRES_SQL_CONNECTION_ERROR}: ${error}`);
       })
   );
 };

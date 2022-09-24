@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "draco",
+    "password": 666869,
+    "database": "instagram",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "draco",
+    "password": 666869,
+    "database": "instagram_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "draco",
+    "password": 666869,
+    "database": "instagram_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}

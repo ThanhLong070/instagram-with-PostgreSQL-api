@@ -1,18 +1,21 @@
 // @ts-nocheck
 const redis = require('redis');
-const createError = require('http-errors');
+const variables = require('../constants/variables');
+const { throwError } = require('../utils/errorHandle');
 
 const client = redis.createClient({
   url: process.env.REDIS_URL,
 });
 
-client.on('error', (err) => console.log('Redis Client Error', err));
+client.on('error', (err) =>
+  console.log(`${variables.REDIS_CLIENT_ERROR}`, err)
+);
 
 (async () => {
   try {
     await client.connect();
   } catch (error) {
-    throw createError(error.message);
+    throwError(error.status, error.message);
   }
 })();
 

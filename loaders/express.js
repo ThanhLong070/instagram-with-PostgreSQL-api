@@ -6,6 +6,10 @@ const routes = require('../api');
 const Logger = require('./logger');
 const passport = require('passport');
 const fileUpload = require('express-fileupload');
+const rateLimiter = require('../api/middlewares/limiter');
+const variables = require('../constants/variables');
+const statusCode = require('../constants/statusCode');
+const response = require('../constants/response');
 
 module.exports = (app) => {
   app.get('/status', (req, res) => res.status(200).end());
@@ -31,22 +35,25 @@ module.exports = (app) => {
 
   app.use(cors());
 
-  // Load API routes
-  app.use('/api/v1', routes());
+  // Load API routes and Rate limiter
+  app.use('/api/v1', rateLimiter(), routes());
 
   // Catch 404 and forward to error handler
   app.use((req, res, next) => {
-    next(createError.NotFound(`Sorry, this route isn't available.`));
+    response.NOT_FOUND();
   });
 
   app.use((err, req, res, next) => {
-    Logger.error(`🔥 [  ${req.path}  ] : ${err.message} `);
+    Logger.error(`🔥 [ ${req.path} ] : ${err.message} `);
 
-    res.json({
-      success: false,
-      status: err.status || 500,
-      message: err.message || 'Internal Server Error',
-      // errorCode: err.errorCode || err.status,
-    });
+    let status = err.status || statusCode.INTERNAL_SERVER_ERROR,
+      message = err.message || variables.COMMON.INTERNAL_SERVER_ERROR,
+      nameCode = err.nameCode || variables.NAME_CODE.API.INTERNAL_SERVER_ERROR,
+      errorCode =
+        err.errorCode || variables.ERROR_CODE.API.INTERNAL_SERVER_ERROR;
+
+    res
+      .status(status)
+      .json({ success: false, status, message, nameCode, errorCode });
   });
 };

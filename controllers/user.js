@@ -9,15 +9,13 @@ exports.getProfileInfo = async (req, res) => {
     dataValues: { password, ...dataValuesAbridged },
   } = user;
 
-  return res.status(200).json({ success: true, data: dataValuesAbridged });
+  return res.json({ success: true, data: dataValuesAbridged });
 };
 
 exports.uploadAvatar = async (req, res) => {
   const { user, files } = req;
 
-  console.log('files :>> ', files);
-
   const data = await uploadAvatar(user.id, files);
 
-  return res.status(200).json({ success: true, data });
+  return res.json({ success: true, data });
 };

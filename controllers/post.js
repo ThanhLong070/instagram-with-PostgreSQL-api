@@ -12,7 +12,7 @@ exports.createPost = async (req, res) => {
 
   const data = await postService.createPost(body, user);
 
-  return res.status(200).json({ success: true, data });
+  return res.json({ success: true, data });
 };
 
 exports.getPosts = async (req, res) => {
@@ -25,7 +25,7 @@ exports.getPosts = async (req, res) => {
 
   const data = await postService.getPosts(whereStatement);
 
-  return res.status(200).json({ success: true, data });
+  return res.json({ success: true, data });
 };
 
 exports.patchPostById = async (req, res) => {
@@ -37,7 +37,7 @@ exports.patchPostById = async (req, res) => {
 
   const data = await postService.updatePost(body, params.postId);
 
-  return res.status(200).json({ success: true, data });
+  return res.json({ success: true, data });
 };
 
 exports.deletePostById = async (req, res) => {
@@ -47,5 +47,5 @@ exports.deletePostById = async (req, res) => {
 
   const data = await postService.deletePost(params.postId);
 
-  return res.status(200).json({ success: true, data });
+  return res.json({ success: true, data });
 };

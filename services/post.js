@@ -1,6 +1,7 @@
 // @ts-nocheck
 const Post = require('../models/Post');
-const createError = require('http-errors');
+const variables = require('../constants/variables');
+const response = require('../constants/response');
 
 /**
  * Create new post
@@ -51,7 +52,7 @@ exports.updatePost = async (body, postId) => {
 exports.deletePost = async (postId) => {
   await Post.destroy({ where: { id: postId } });
 
-  return `Successful delete post`;
+  return `${variables.SUCCESSFUL_DELETE_POST}`;
 };
 
 /**
@@ -66,7 +67,5 @@ exports.checkExistPost = async (postId, userId) => {
     userId,
   });
 
-  if (!existPost) {
-    throw createError.NotFound(`This post doesn't exist.`);
-  }
+  if (!existPost) response.NOT_EXISTS_POST();
 };

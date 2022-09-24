@@ -1,6 +1,6 @@
 // @ts-nocheck
-const createError = require('http-errors');
 const JWT = require('jsonwebtoken');
+const response = require('../../constants/response');
 const client = require('../../loaders/redis');
 
 /**
@@ -11,7 +11,7 @@ const client = require('../../loaders/redis');
  */
 module.exports.validate = (schema, data) => {
   const { error } = schema.validate(data);
-  if (error) throw createError(error.details[0].message);
+  if (error) response.VALIDATE_DATA(error.details[0].message);
 };
 
 /**
@@ -22,7 +22,7 @@ module.exports.validate = (schema, data) => {
 module.exports.verifyToken = async (userId) => {
   const token = await client.get(userId);
 
-  if (!token) throw createError.Unauthorized();
+  if (!token) response.UNAUTHORIZED();
 
   return new Promise((resolve, reject) => {
     JWT.verify(token, process.env.SECRET_OR_KEY, async (err, payload) => {

@@ -2,6 +2,8 @@
 const User = require('../models/User');
 const createError = require('http-errors');
 const { Op } = require('sequelize');
+const { minIoUpload } = require('./minIo');
+const response = require('../constants/response');
 
 /**
  * Check account is registered
@@ -34,9 +36,7 @@ exports.checkExistAccount = async (email, userId, username) => {
     [Op.or]: [{ email }, { id: userId }, { username }],
   });
 
-  if (!user) {
-    throw createError.NotFound(`This account doesn't exist.`);
-  }
+  if (!user) response.NOT_EXISTS_USER();
 
   return user;
 };
@@ -49,17 +49,13 @@ exports.checkExistAccount = async (email, userId, username) => {
  * @returns {object} User data
  */
 exports.uploadAvatar = async (userId, files) => {
-  if (files) {
-    const fileUpload = files.image;
-    const imgPath = `uploads/avatar/${fileUpload.name}`;
-    fileUpload.mv(imgPath);
+  if (!files) throw createError.NotFound(`File upload doesn't exist.`);
 
-    // TODO: upload to MinIO
-    // await User.update({ avatar: imgPath }, { where: { id: userId } });
+  const fileUpload = files.image;
+  if (fileUpload.length > 0) throw createError(`You can only choose one photo`);
 
-    return `Successful upload avatar`;
-  }
-  throw createError.NotFound(`File upload doesn't exist.`);
+  // TODO: upload to MinIO
+  return minIoUpload(userId, fileUpload);
 };
 
 /**

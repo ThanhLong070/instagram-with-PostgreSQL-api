@@ -11,6 +11,8 @@ const { signToken } = require('../utils/generate');
 const { checkRegistered, checkExistAccount } = require('./user');
 const { verifyToken } = require('../utils/validation');
 const client = require('../loaders/redis');
+const variables = require('../constants/variables');
+const response = require('../constants/response');
 
 /**
  * Signup
@@ -60,7 +62,7 @@ exports.login = async (body) => {
   const user = await checkExistAccount(email, null, null);
 
   const isValid = user.validPassword(password);
-  if (!isValid) throw createError.Unauthorized(`Password incorrect`);
+  if (!isValid) response.PASSWORD_INCORRECT();
 
   const accessToken = await signToken(user.id, process.env.EX_ACCESS_TOKEN);
   const refreshToken = await signToken(user.id, process.env.EX_REFRESH_TOKEN);
@@ -83,5 +85,5 @@ exports.logout = async (body) => {
 
   await client.del(_id);
 
-  return 'Successful logout!';
+  return `${variables.SUCCESSFUL_LOGOUT}`;
 };

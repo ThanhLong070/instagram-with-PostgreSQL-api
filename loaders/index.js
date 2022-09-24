@@ -2,14 +2,15 @@
 const expressLoader = require('./express');
 const sequelizeLoader = require('./sequelize');
 const Logger = require('./logger');
+const variables = require('../constants/variables');
 
 module.exports = async (app) => {
   await sequelizeLoader();
-  Logger.success('✌️ DB loaded and connected!');
+  Logger.success(`${variables.DB_LOADED}`);
 
   await require('./redis');
-  Logger.success('✌️ Redis loaded');
+  Logger.success(`${variables.REDIS_LOADED}`);
 
   await expressLoader(app);
-  Logger.success('✌️ Express loaded');
+  Logger.success(`${variables.EXPRESS_LOADED}`);
 };

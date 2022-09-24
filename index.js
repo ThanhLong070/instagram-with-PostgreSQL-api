@@ -10,6 +10,7 @@ const express = require('express');
 const helmet = require('helmet');
 
 const Logger = require('./loaders/logger');
+const variables = require('./constants');
 
 async function startServer() {
   const app = express();
@@ -27,7 +28,7 @@ async function startServer() {
 
     Logger.success(`
       ################################################
-            🛡️  Server listening on port: ${port} 🛡️ 
+            🛡️  ${variables.SERVER_LISTENING_ON_PORT}: ${port} 🛡️ 
       ################################################
     `);
   });
