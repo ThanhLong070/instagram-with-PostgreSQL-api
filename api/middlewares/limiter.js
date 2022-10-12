@@ -4,7 +4,7 @@ const statusCode = require('../../constants/statusCode');
 
 const client = require('../../loaders/redis');
 
-module.exports = rateLimiter = () => {
+module.exports = () => {
   const secondsWindow = process.env.SECONDS_WINDOW;
   const allowedHits = process.env.ALLOWED_HITS;
 

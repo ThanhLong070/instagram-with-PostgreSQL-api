@@ -15,7 +15,7 @@ exports.getProfileInfo = async (req, res) => {
 exports.uploadAvatar = async (req, res) => {
   const { user, files } = req;
 
-  const data = await uploadAvatar(user.id, files);
+  const data = await uploadAvatar(user, files);
 
   return res.json({ success: true, data });
 };

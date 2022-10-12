@@ -1,17 +1,11 @@
 // @ts-nocheck
-const MinIo = require('minio');
 const variables = require('../constants/variables');
 const Photo = require('../models/Photo');
+const User = require('../models/User');
+const minIoClient = require('../configs/minIo');
+const client = require('../loaders/redis');
 
-const minIoClient = new MinIo.Client({
-  endPoint: 'localhost',
-  port: 9000,
-  useSSL: false,
-  accessKey: 'long',
-  secretKey: 'test1234',
-});
-
-exports.minIoUpload = async (userId, files) => {
+exports.minIoUpload = async (user, postId, files) => {
   let retrieveNewURL, imgPath;
 
   // Upload photos of the post
@@ -19,35 +13,62 @@ exports.minIoUpload = async (userId, files) => {
     await Promise.all(
       files.map(async (file) => {
         retrieveNewURL = await retrieveAndUpload(file, false);
-        console.log('retrieveNewURL1 :>> ', retrieveNewURL);
 
-        return Photo.update(
-          { avatar: retrieveNewURL },
-          { where: { id: userId } }
-        );
+        const photo = await Photo.findOne({
+          where: { postId },
+        });
+
+        const body = { name: retrieveNewURL, postId };
+        if (photo) return Photo.update(body);
+        return Photo.create(body);
       })
     );
 
-    return `${variables.UPLOADED_PHOTOS}`;
+    return { message: `${variables.UPLOADED_PHOTOS}`, retrieveNewURL };
   }
 
   // Upload Avatar
   retrieveNewURL = await retrieveAndUpload(files, true);
-  console.log('retrieveNewURL2 :>> ', retrieveNewURL);
-  await User.update({ avatar: retrieveNewURL }, { where: { id: userId } });
-  return `${variables.UPLOADED_AVATAR}`;
+  await User.update({ avatar: retrieveNewURL }, { where: { id: user.id } });
+  return { message: `${variables.UPLOADED_AVATAR}`, retrieveNewURL };
 
   async function retrieveAndUpload(file, isUploadAvatar) {
-    imgPath = `uploads/${isUploadAvatar ? `avatars` : `photos`}/${file.name}`;
-    file.mv(imgPath);
-    console.log('file.data :>> ', file.data);
-    return minIoClient.putObject(
-      process.env.MIN_IO_BUCKET,
-      file.name,
-      file.data,
-      function (err, etag) {
-        return console.log('err, etag :>> ', err, etag); // err should be null
-      }
-    );
+    try {
+      const fileName = isUploadAvatar
+        ? `${user.username}_avatar_${file.name}`
+        : `${postId}_photo_${file.name}`;
+
+      const folderUpload = isUploadAvatar ? `avatars` : `photos`;
+      imgPath = `uploads/${folderUpload}/${fileName}`;
+      file.mv(imgPath);
+
+      const metaData = {
+        'Content-Type': file.mimetype,
+      };
+
+      await minIoClient.putObject(
+        process.env.MIN_IO_BUCKET,
+        fileName,
+        file.data,
+        file.size,
+        metaData
+      );
+
+      // // get url
+      // const url = await minIoClient.presignedGetObject(
+      //   process.env.MIN_IO_BUCKET,
+      //   fileName
+      // );
+
+      // const url = await minIoClient.getObject(
+      //   process.env.MIN_IO_BUCKET,
+      //   fileName
+      // );
+
+      const url = `/${process.env.MIN_IO_BUCKET}/${fileName}`;
+      return url;
+    } catch (err) {
+      throw new Error(err.message);
+    }
   }
 };

@@ -9,6 +9,7 @@ const { validate } = require('./index');
 module.exports.createPostValidation = (data) => {
   const createPostSchema = Joi.object({
     note: Joi.string().required(),
+    photo: Joi.string().required(),
   });
 
   validate(createPostSchema, data);

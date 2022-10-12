@@ -48,14 +48,14 @@ exports.checkExistAccount = async (email, userId, username) => {
  * @param {string} username User name request
  * @returns {object} User data
  */
-exports.uploadAvatar = async (userId, files) => {
+exports.uploadAvatar = async (user, files) => {
   if (!files) throw createError.NotFound(`File upload doesn't exist.`);
 
   const fileUpload = files.image;
   if (fileUpload.length > 0) throw createError(`You can only choose one photo`);
 
   // TODO: upload to MinIO
-  return minIoUpload(userId, fileUpload);
+  return minIoUpload(user, null, fileUpload);
 };
 
 /**

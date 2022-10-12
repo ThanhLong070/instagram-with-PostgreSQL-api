@@ -1,4 +1,5 @@
 // @ts-nocheck
+const { minIoUpload } = require('../services/minIo');
 const postService = require('../services/post');
 const {
   createPostValidation,
@@ -6,13 +7,19 @@ const {
 } = require('../utils/validation/post');
 
 exports.createPost = async (req, res) => {
-  const { body, user } = req;
+  const { body, user, files } = req;
 
   createPostValidation(body);
 
-  const data = await postService.createPost(body, user);
+  if (!files) throw createError.NotFound(`File upload doesn't exist.`);
+  const fileUpload = files.image;
 
-  return res.json({ success: true, data });
+  const data = await postService.createPost(body, user, files);
+
+  // TODO: upload to MinIO
+  const photo = await minIoUpload(user, data.id, fileUpload);
+
+  return res.json({ success: true, data: { ...data, photo } });
 };
 
 exports.getPosts = async (req, res) => {

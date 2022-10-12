@@ -3,6 +3,7 @@ module.exports = {
   THE_SERVER_IS_BUSY: 'The server is busy!',
   DB_LOADED: '✌️ DB loaded and connected!',
   REDIS_LOADED: '✌️ Redis loaded',
+  MIN_IO_LOADED: '✌️ MinIo loaded',
   EXPRESS_LOADED: '✌️ Express loaded',
   POSTGRES_SQL_CONNECTED: '✌️ PostgresSql Connected',
   POSTGRES_SQL_CONNECTION_ERROR: '🔥 PostgresSql Connection Error',
@@ -11,6 +12,8 @@ module.exports = {
   UPLOADED_PHOTOS: '✌️ Uploaded Photos!',
   UPLOADED_AVATAR: '✌️ Uploaded Avatar!',
   SUCCESSFUL_DELETE_POST: '✌️ Successful delete post!',
+  DB_DISCONNECTED: 'DB disconnected!',
+  REDIS_DISCONNECTED: 'Redis disconnected!',
 
   COMMON: {
     ERROR: 'Error',

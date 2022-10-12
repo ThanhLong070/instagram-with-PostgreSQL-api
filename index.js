@@ -8,6 +8,7 @@ dotenv.config({
 
 const express = require('express');
 const helmet = require('helmet');
+const morgan = require('morgan');
 
 const Logger = require('./loaders/logger');
 const variables = require('./constants/variables');
@@ -15,6 +16,7 @@ const variables = require('./constants/variables');
 async function startServer() {
   const app = express();
   app.use(helmet());
+  app.use(morgan('common'));
 
   await require('./loaders')(app);
 

@@ -1,0 +1,27 @@
+25-09-2022	55:11:21------🔥 dab1f547-0506-42f5-8c6f-b2ebe90ba695 [ POST /api/v1/auth/logins ] : Not found
+25-09-2022	55:11:21------🔥 7d9d0072-d259-484c-8576-b55a31ab7857 [ POST /api/v1/auth/logins ] : Not found
+25-09-2022	59:11:21------🔥 43451c22-823b-45ed-8567-9f3f33db1b09 [ POST /api/v1/auth/login ] : Password incorrect
+25-09-2022	00:12:21------🔥 25b05fc6-0fa3-4c15-bf84-b4d21f3401ab [ POST /api/v1/auth/login ] : Password incorrect
+25-09-2022	56:15:21------🔥 a8c06468-1119-4068-bfbe-4898eaa5485e [ POST /api/v1/users/upload_avatar ] : value too long for type character varying(255)
+25-09-2022	15:16:21------🔥 fad5d24b-552c-479e-9310-db8fbe9bf6e3 [ POST /api/v1/users/upload_avatar ] : value too long for type character varying(255)
+25-09-2022	28:17:21------🔥 2867fe1f-3eb1-4b95-83e8-c02aab97d333 [ POST /api/v1/users/upload_avatar ] : value too long for type character varying(255)
+25-09-2022	54:17:21------🔥 6b7a7a48-20a9-41a5-bd8f-472fa3c802bf [ POST /api/v1/users/upload_avatar ] : value too long for type character varying(255)
+25-09-2022	52:26:21------🔥 e7806870-622e-4c34-ae9a-865548c31039 [ POST /api/v1/users/upload_avatar ] : string violation: avatar cannot be an array or an object
+25-09-2022	11:32:21------🔥 b27833a0-0ce0-4478-8fb5-b4fd0d68bb09 [ POST /api/v1/users/upload_avatar ] : string violation: avatar cannot be an array or an object
+05-10-2022	28:26:09------🔥 e6c13443-5247-4cc3-8f0c-c2f4e43262ce [ POST /api/v1/users/upload_avatar ] : string violation: avatar cannot be an array or an object
+05-10-2022	02:37:09------🔥 093159c3-912b-431f-b748-c3880489497e [ POST /api/v1/users/upload_avatar ] : minioClient is not defined
+05-10-2022	23:04:11------🔥 943b55b3-4dff-482f-83b0-5e23802c5f81 [ POST /api/v1/users/upload_avatar ] : res is not defined
+05-10-2022	03:06:11------🔥 f744d875-ca4f-482d-88f4-f69462f55da6 [ POST /api/v1/users/upload_avatar ] : Invalid argument type
+05-10-2022	34:06:11------🔥 942e30a8-367b-4ea7-893e-1b964efe6d88 [ POST /api/v1/users/upload_avatar ] : Invalid argument type
+05-10-2022	21:29:11------🔥 35dbd9e5-6cfb-4258-9434-94e3993e45b1 [ POST /api/v1/users/upload_avatar ] : minioClient is not defined
+05-10-2022	45:32:11------🔥 f53ab241-3e46-4ca6-97f0-476f674ca803 [ POST /api/v1/users/upload_avatar ] : fs is not defined
+05-10-2022	34:43:11------🔥 6f356525-17fb-49df-921b-c7241656721a [ POST /api/v1/users/upload_avatar ] : The "fd" argument must be of type number. Received an instance of Buffer
+05-10-2022	41:50:13------🔥 16ae1571-8275-4e9c-bf74-3ac8f6be9f63 [ POST /api/v1/users/upload_avatar ] : url.createReadStream is not a function
+05-10-2022	51:53:13------🔥 a6b5116c-7acf-47a2-a1d3-7722c4c3dc7f [ POST /api/v1/users/upload_avatar ] : The specified key does not exist.
+05-10-2022	40:54:13------🔥 d5630ccb-543a-4a1d-81bb-ab4d013d06db [ POST /api/v1/users/upload_avatar ] : url.createReadStream is not a function
+05-10-2022	13:32:16------🔥 c2872603-8327-4234-a06a-a276eccc8680 [ POST /api/v1/users/upload_avatar ] : The provided &#39;x-amz-content-sha256&#39; header does not match what was computed.
+05-10-2022	45:32:16------🔥 a46258bd-1c99-4145-bd9f-b617702feb92 [ POST /api/v1/users/upload_avatar ] : The provided &#39;x-amz-content-sha256&#39; header does not match what was computed.
+05-10-2022	46:39:21------🔥 3f18fe02-0670-4941-9c4b-38428a072448 [ POST /api/v1/users/upload_avatar ] : value too long for type character varying(255)
+05-10-2022	35:59:21------🔥 5f8c7545-050e-484b-8745-de76be50f860 [ GET /uploads/thanhlong_avatar_123232.png ] : Not found
+05-10-2022	35:59:21------🔥 742ee40b-f76f-4b24-b871-421948f0f220 [ GET /favicon.ico ] : Not found
+05-10-2022	58:20:22------🔥 1ad5e1bb-4f23-49f8-8ac5-5f11b2e9601c [ GET /uploads/thanhlong_avatar_123232.png ] : Not found

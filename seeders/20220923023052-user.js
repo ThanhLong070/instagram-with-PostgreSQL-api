@@ -6,7 +6,7 @@ const { genSaltSync, hashSync } = require('bcryptjs');
 module.exports = {
   async up(queryInterface, Sequelize) {
     const salt = genSaltSync();
-
+    console.log('hashSync :>> ', hashSync('test1234', salt));
     return queryInterface.bulkInsert(
       'users',
       [

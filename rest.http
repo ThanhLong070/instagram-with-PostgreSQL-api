@@ -71,3 +71,6 @@ content-type: application/json
 DELETE  http://localhost:7000/api/v1/posts/31484765-bf8f-4795-a3e6-ea1b337eca04
 authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJjYzRmYjBkMy1hNWZmLTQ3MDgtOTRlNy1iMDU2Y2E4M2VlZGYiLCJpYXQiOjE2NTc4NzExNjMsImV4cCI6MTY1Nzk1NzU2M30.oXUzxPIth3V-2tEy7FLFXI4juljgAt3GisO87TMNFkY
 content-type: application/json
+
+###
+GET https://api.github.com

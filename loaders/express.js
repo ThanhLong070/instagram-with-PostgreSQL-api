@@ -1,7 +1,6 @@
 // @ts-nocheck
 const express = require('express');
 const cors = require('cors');
-const createError = require('http-errors');
 const routes = require('../api');
 const Logger = require('./logger');
 const passport = require('passport');
@@ -10,6 +9,8 @@ const rateLimiter = require('../api/middlewares/limiter');
 const variables = require('../constants/variables');
 const statusCode = require('../constants/statusCode');
 const response = require('../constants/response');
+const logEvents = require('../utils/logEvents');
+const { v4 } = require('uuid');
 
 module.exports = (app) => {
   app.get('/status', (req, res) => res.status(200).end());
@@ -44,7 +45,9 @@ module.exports = (app) => {
   });
 
   app.use((err, req, res, next) => {
-    Logger.error(`🔥 [ ${req.path} ] : ${err.message} `);
+    const log = `🔥 ${v4()} [ ${req.method} ${req.path} ] : ${err.message}`;
+    logEvents(log);
+    Logger.error(log);
 
     let status = err.status || statusCode.INTERNAL_SERVER_ERROR,
       message = err.message || variables.COMMON.INTERNAL_SERVER_ERROR,
